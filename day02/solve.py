@@ -1,9 +1,5 @@
 def solve_1(data):
-    count = 0
-    for values in data:
-        if(is_safe(values)):
-            count += 1
-    return count
+    return sum(1 for values in data if is_safe(values))
 
 
 def is_safe(values):
@@ -12,11 +8,7 @@ def is_safe(values):
     return ascending_safe or descending_safe
 
 def solve_2(data):
-    count = 0
-    for values in data:
-        if any(is_safe(values[:i] + values[i+1:]) for i in range(len(values))):
-            count += 1
-    return count
+    return sum(1 for values in data if any(is_safe(values[:i]+values[i+1:])for i in range(len(values))))
 
 
 def main():
