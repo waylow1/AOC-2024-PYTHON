@@ -14,17 +14,10 @@ def is_safe(values):
 def solve_2(data):
     count = 0
     for values in data:
-        if is_safe(values):
+        if any(is_safe(values[:i] + values[i+1:]) for i in range(len(values))):
             count += 1
-            continue
-        for i in range(len(values)):
-            modified_values = values[:i] + values[i + 1:]
-            if is_safe(modified_values):
-                count += 1
-                break
     return count
 
-    
 
 def main():
     with open("input.txt") as f:
